@@ -1,0 +1,120 @@
+README
+======
+
+Author: Vivek Venkatesh Ganesan
+
+PROBLEM
+========
+Implement a Recursive Best-First Search (RBFS) to determine a solution for the 8-puzzle problem given an input initial state. The 8-puzzle should be a 3x3 puzzle.
+
+- The initial state of your program should be input from a text file with numbers in rows separated by a <tab> character. Each row of the input file should be terminated by a newline character.
+
+- The empty square should be represented by the number 0
+
+- Each move should be represented by one of the actions: up, down, left, or right to indicate which direct the empty tile moves. The result of an action will switch locations of the 0 tile with the tile in the direction of the move (i.e. if the empty tile moves up, the tile in that location will  move down to replace the old location of the 0 tile).
+
+- The Goal State should have the empty tile in the upper left corner of the puzzle, e.g.
+0	1	2
+3	4	5
+6	7	8
+
+When a solution is discovered, your program should display the sequence of moves to arrive at the goal state from the given initial state. For example:
+up
+left
+down
+down
+right
+up
+etc.
+
+The code has been implemented in Java.  
+
+Execution
+=========
+
+There are three possible ways to run the submitted JAR file:
+
+a) java -jar eightpuzzle.jar <path_to_input_file_containing_the_initial_state>
+
+If only the initial state file is given as the input, the default goal state:
+
+0	1	2
+3	4	5
+6	7	8
+
+b) java -jar eightpuzzle.jar <path_to_input_file_containing_the_initial_state> <path_to_input_file_containing_the_goal_state>
+
+Here we get both initial state and goal state as input from files. We can use this if the goal state is something different from the above default state.
+
+c) java -jar eightpuzzle.jar <path_to_input_file_containing_the_initial_state> <path_to_input_file_containing_the_goal_state> <board_size>
+
+where board size specifies the dimensions of the board. (Example: 3 means it is a 3 X 3 board) 
+
+SAMPLE INPUT AND OUTPUT
+=======================
+
+> java -jar eightpuzzle.jar input.txt
+
+Initial State
+-------------
+3	2	5	
+4	1	8	
+6	7	0	
+
+Goal State
+-----------
+0	1	2	
+3	4	5	
+6	7	8	
+
+Number of Steps to reach the solution = 6
+
+Steps
+-----
+UP
+UP
+LEFT
+DOWN
+LEFT
+UP
+
+Source Files
+============
+
+Source files are present in the following directory
+
+> ls -l src/main/java/com/vivek/puzzle/eightpuzzle/
+total 136
+-rw-r--r--  1 vivek  staff  1447 Jun 23 17:22 ActionsFunctionSet.java
+-rw-r--r--  1 vivek  staff  7217 Jun 23 21:08 EightPuzzle.java
+-rw-r--r--  1 vivek  staff   601 Jun 23 17:27 GoalStateChecker.java
+-rw-r--r--  1 vivek  staff  5249 Jun 24 13:10 Heuristic.java
+-rw-r--r--  1 vivek  staff   175 Jun 23 17:31 Moves.java
+-rw-r--r--  1 vivek  staff  1459 Jun 23 17:33 Node.java
+-rw-r--r--  1 vivek  staff   620 Jun 23 19:54 PuzzleAction.java
+-rw-r--r--  1 vivek  staff  2567 Jun 23 17:37 PuzzleState.java
+-rw-r--r--  1 vivek  staff  4171 Jun 23 17:20 ResultFunctionBoard.java
+-rw-r--r--  1 vivek  staff  5877 Jun 24 13:16 Search.java
+-rw-r--r--  1 vivek  staff  3592 Jun 23 19:51 TreeNode.java
+-rw-r--r--  1 vivek  staff    17 Jun 24 13:02 goal.txt
+-rw-r--r--  1 vivek  staff    17 Jun 24 13:06 input.txt
+
+Compilation
+===========
+This is implemented as a maven project. It can be compiled and packaged using Maven as follows:
+
+> mvn compile 
+> mvm package
+
+(Execute it from the directory containing the pom.xml)
+
+All the dependent-jars are present in the ‘target/dependency-jars’ folder
+
+Test Cases
+==========
+JUnit test case can be found in the target/test-classes and source in src/test folder. 
+
+
+OTHER CONSIDERATIONS
+====================
+If the depth is growing too large, then it will automatically stop after a cutoff limit. 
